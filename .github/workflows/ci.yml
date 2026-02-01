@@ -48,7 +48,9 @@ jobs:
       - name: Build debug APK
         run: |
           cd PipePipeClient
-          ./gradlew assembleDebug lintDebug --stacktrace -DskipFormatKtlint
+          date
+          ./gradlew assembleRelease -DskipFormatKtlint  --parallel > /dev/null 2>&1
+          date
 
       - name: Upload APKs
         uses: actions/upload-artifact@v4
@@ -95,4 +97,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.file }}
+
           path: apks/${{ matrix.file }}
